@@ -39,7 +39,7 @@ class Farm {
 	public function addProduct($productClass, $quantity = 0) {
 		// Если класс продукта существует
 		if (class_exists($productClass)) {
-			// Добавляем его в массив
+			// Добавляем его в массив, где ключем массива будет имя класса продукта, а кол-во будет в соседней ячейке на одном уровне
 			$this->productsStorage[ $productClass ]["product"] = new $productClass();
 			$this->productsStorage[ $productClass ]["quantity"] = $quantity;
 		} else {
