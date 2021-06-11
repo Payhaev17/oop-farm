@@ -3,8 +3,8 @@
 abstract class Animal {
 	// Уникальный номер каждого животного
 	protected $uniqueNumber;
-	// Генерируемый продукт
-	protected $product;
+	// Название генерируемого продукта
+	protected $productName;
 	// Минимальное кол-во продукта
 	protected $min;
 	// Максимальное кол-во продукта
@@ -15,6 +15,10 @@ abstract class Animal {
 	}
 
 	public function genProduct() {
-		return ["class" => $this->product, "quantity" => mt_rand($this->min, $this->max)];
+		return mt_rand($this->min, $this->max);
+	}
+
+	public function getProductName() {
+		return $this->productName;
 	}
 };

@@ -50,20 +50,25 @@ class Farm {
 	public function collectProducts() {
 		InfoPrinter::printMessage("Производится сбор продукции...", 1);
 		
-		foreach($this->barn as $animalInfo) 
+		foreach($this->barn as $animal)
 		{
-			// Если в массиве будет quantity = 10, тот данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
-			for($i = 0; $i < $animalInfo["quantity"]; $i++) {
-				$newProductInfo = $animalInfo["animal"]->genProduct();
+			$newProduct = [
+				"class" => $animal["animal"]->getProductName()
+				"quantity" => 0
+			];
 
-				// Если в хранилище уже есть данный продукт
-				if (isset($this->productsStorage[ $newProductInfo["class"] ])) {
-					// То к количеству продукта из хранилища, прибавим количество полученного продукта
-					$this->productsStorage[ $newProductInfo["class"] ]["quantity"] += $newProductInfo["quantity"];
-				} else {
-					// Если нет, то добавляем предмет в хранилище
-					$this->addProduct($newProductInfo["class"], $newProductInfo["quantity"]);
-				}
+			// Если в массиве будет допустим quantity = 10, тот данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
+			for($i = 0; $i < $animal["quantity"]; $i++) {
+				$newProduct["quantity"] += $animal["animal"]->genProduct();
+			}
+
+			// Если в хранилище уже есть данный продукт
+			if (isset($this->productsStorage[ $newProduct["class"] ])) {
+				// То к количеству продукта из хранилища, прибавим количество полученного продукта
+				$this->productsStorage[ $newProduct["class"] ]["quantity"] += $newProduct["quantity"];
+			} else {
+				// Если нет, то добавляем предмет в хранилище
+				$this->addProduct($newProduct["class"], $newProduct["quantity"]);
 			}
 		}
 	}
