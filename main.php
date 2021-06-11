@@ -26,4 +26,4 @@ $Farm->addAnimal("Sheep", 15); // Можно и так
 $Farm->collectProducts();
 
 // Выводим полученные продукты
-InfoPrinter::productInfo($Farm->getProductsStorage());
+InfoPrinter::productsInfo($Farm->getProductsStorage());
