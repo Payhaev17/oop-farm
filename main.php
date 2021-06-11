@@ -18,7 +18,6 @@ require "./classes/Farm.php";
 $Farm = new Farm([
   ["animal" => "Cow", "quantity" => 10],
   ["animal" => "Chicken", "quantity" => 20],
-  ["animal" => "Sheep", "quantity" => 15]
 ]);
 
 // Собираем продукты
