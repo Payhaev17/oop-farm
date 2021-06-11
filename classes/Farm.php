@@ -4,16 +4,17 @@ class Farm {
 	private $barn;
 	private $productsStorage;
 
-	public function __construct($cowLength = 10, $chickenLength = 20) {
+	public function __construct($animals = []) {
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
 		$this->productsStorage = [];
 
-		for($i = 0; $i < $cowLength; $i++) {
-			array_push($this->barn, new Cow($this->genUniqueNumber()));
-		}
-
-		for($i = 0; $i < $chickenLength; $i++) {
-			array_push($this->barn, new Chicken($this->genUniqueNumber()));
+		foreach($animals as $animal) {
+			for($i = 0; $i < $animal["quantity"]; $i++) {
+				array_push(
+					$this->barn, 
+					new $animal["animalType"]( $this->genUniqueNumber() )
+				);
+			}
 		}
 	}
 
