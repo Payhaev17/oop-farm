@@ -27,13 +27,19 @@ class Farm {
 	}
 
 	public function addProduct($className, $quantity = 0) {
-		if (class_exists($className)) {
-			// Добавляем его в массив, где ключем массива будет имя класса продукта, а кол-во будет в соседней ячейке на одном уровне
-			$this->productsStorage[ $className ]["object"]  = new $className();
-			$this->productsStorage[ $className ]["quantity"] = $quantity;
-		} else {
+		if (!class_exists($className)) {
 			InfoPrinter::printMessage("Не найден класс продукта '". $className ."' ", 1);
 			exit();
+		}
+
+		// Если в хранилище уже есть данный продукт
+		if (isset($this->productsStorage[ $className ])) {
+			// То к количеству продукта, прибавим количество полученного продукта
+			$this->productsStorage[ $className ]["quantity"] += $quantity;
+		} else {
+			// Если нет, то добавляем предмет в хранилище
+			$this->productsStorage[ $className ]["object"]  = new $className();
+			$this->productsStorage[ $className ]["quantity"] = $quantity;
 		}
 	}
 
@@ -44,7 +50,7 @@ class Farm {
 		{
 			// Это новый продукт от животного, пока что его количество равно 0
 			$newProduct = [
-				"class" => $animal["object"]->getProductName(),
+				"className" => $animal["object"]->getProductName(),
 				"quantity" => 0
 			];
 
@@ -52,15 +58,8 @@ class Farm {
 			for($i = 0; $i < $animal["quantity"]; $i++) {
 				$newProduct["quantity"] += $animal["object"]->genProduct();
 			}
-
-			// Если в хранилище уже есть данный продукт
-			if (isset($this->productsStorage[ $newProduct["class"] ])) {
-				// То к количеству продукта, прибавим количество полученного продукта
-				$this->productsStorage[ $newProduct["class"] ]["quantity"] += $newProduct["quantity"];
-			} else {
-				// Если нет, то добавляем предмет в хранилище
-				$this->addProduct($newProduct["class"], $newProduct["quantity"]);
-			}
+			
+			$this->addProduct($newProduct["className"], $newProduct["quantity"]);
 		}
 	}
 
