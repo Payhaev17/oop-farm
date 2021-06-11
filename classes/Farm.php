@@ -11,30 +11,28 @@ class Farm {
 		$this->lastUniqueNum = 0; // Последний уникальный номер животного
 
 		foreach($animals as $animal) {
-			$this->addAnimal($animal["animal"], $animal["quantity"]);
+			$this->addAnimal($animal["className"], $animal["quantity"]);
 		}
 	}
 
-	public function addAnimal($animalClass, $quantity = 1) {
-		// Если класс животного существует
-		if (class_exists($animalClass)) {
+	public function addAnimal($className, $quantity = 1) {
+		if (class_exists($className)) {
 			// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
-			$this->barn[ $animalClass ]["animal"]   = new $animalClass(++$this->lastUniqueNum);
-			$this->barn[ $animalClass ]["quantity"] = $quantity;
+			$this->barn[ $className ]["object"]   = new $className(++$this->lastUniqueNum);
+			$this->barn[ $className ]["quantity"] = $quantity;
 		} else {
-			InfoPrinter::printMessage("Не найден класс животного '". $animalClass ."' ", 1);
+			InfoPrinter::printMessage("Не найден класс животного '". $className ."' ", 1);
 			exit();
 		}
 	}
 
-	public function addProduct($productClass, $quantity = 0) {
-		// Если класс продукта существует
-		if (class_exists($productClass)) {
+	public function addProduct($className, $quantity = 0) {
+		if (class_exists($className)) {
 			// Добавляем его в массив, где ключем массива будет имя класса продукта, а кол-во будет в соседней ячейке на одном уровне
-			$this->productsStorage[ $productClass ]["product"]  = new $productClass();
-			$this->productsStorage[ $productClass ]["quantity"] = $quantity;
+			$this->productsStorage[ $className ]["object"]  = new $className();
+			$this->productsStorage[ $className ]["quantity"] = $quantity;
 		} else {
-			InfoPrinter::printMessage("Не найден класс продукта '". $productClass ."' ", 1);
+			InfoPrinter::printMessage("Не найден класс продукта '". $className ."' ", 1);
 			exit();
 		}
 	}
@@ -46,13 +44,13 @@ class Farm {
 		{
 			// Это новый продукт от животного, пока что его количество равно 0
 			$newProduct = [
-				"class" => $animal["animal"]->getProductName(),
+				"class" => $animal["object"]->getProductName(),
 				"quantity" => 0
 			];
 
 			// Если в массиве будет допустим quantity = 10, то данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
 			for($i = 0; $i < $animal["quantity"]; $i++) {
-				$newProduct["quantity"] += $animal["animal"]->genProduct();
+				$newProduct["quantity"] += $animal["object"]->genProduct();
 			}
 
 			// Если в хранилище уже есть данный продукт
