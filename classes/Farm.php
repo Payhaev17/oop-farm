@@ -54,7 +54,7 @@ class Farm {
 		{
 			// Это новый продукт от животного, пока что его количество равно 0
 			$newProduct = [
-				"class" => $animal["animal"]->getProductName()
+				"class" => $animal["animal"]->getProductName(),
 				"quantity" => 0
 			];
 
