@@ -12,7 +12,7 @@ class Farm {
 
 		foreach($animals as $animal) {
 			for($i = 0; $i < $animal["quantity"]; $i++) {
-				$this->addAnimal($animal["animalType"]);
+				$this->addAnimal($animal["animal"]);
 			}
 		}
 	}
