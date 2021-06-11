@@ -31,7 +31,7 @@ class Farm {
 			// Добавляем его в массив (хлев)
 			array_push($this->barn, new $animalClass( ++$this->lastUniqueNum ));
 		} else {
-			InfoPrinter::printMessage("Не найден класс данного животного", 1);
+			InfoPrinter::printMessage("Не найден класс животного '". $animalClass ."' ", 1);
 			exit();
 		}
 	}
@@ -43,7 +43,7 @@ class Farm {
 			$this->productsStorage[ $productClass ]["product"] = new $productClass();
 			$this->productsStorage[ $productClass ]["quantity"] = $quantity;
 		} else {
-			InfoPrinter::printMessage("Не найден класс данного продукта", 1);
+			InfoPrinter::printMessage("Не найден класс продукта '". $productClass ."' ", 1);
 			exit();
 		}
 	}

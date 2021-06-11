@@ -4,7 +4,7 @@
 class Chicken extends Animal {
 	public function __construct($uniqueNumber) {
 		$this->uniqueNumber = $uniqueNumber;
-		$this->product = "Egg";
+		$this->product = "Egge";
 		$this->min = 0;
 		$this->max = 1;
 	}
