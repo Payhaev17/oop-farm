@@ -5,7 +5,7 @@ require "./classes/Cow.php";
 require "./classes/Chicken.php";
 require "./classes/Farm.php";
 
-// Если требуется добавить животное, то нужно добавить в массив новый массив, с именем класса нового животного, и нужным его количеством
+// Если требуется новое животное, то добавить в массив новый элемент с названием и количеством животного 
 $Farm = new Farm([
   ["animalType" => "Cow", "quantity" => 10],
   ["animalType" => "Chicken", "quantity" => 20]
@@ -14,7 +14,6 @@ $Farm = new Farm([
 // $Farm->collectProducts();
 
 // $products = $Farm->getProductsStorage();
-
 // foreach($products as $key => $value) {
 //  	echo $key ." - ". $value ."\n";
 // }

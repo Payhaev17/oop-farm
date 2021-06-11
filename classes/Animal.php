@@ -1,6 +1,5 @@
 <?php
 
-// Предок животных
 abstract class Animal {
 	// Уникальный номер каждого животного
 	private $uniqueNumber;
