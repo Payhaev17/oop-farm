@@ -16,14 +16,14 @@ class Farm {
 	}
 
 	public function addAnimal($className, $quantity = 1) {
-		if (class_exists($className)) {
-			// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
-			$this->barn[ $className ]["object"]   = new $className(++$this->lastUniqueNum);
-			$this->barn[ $className ]["quantity"] = $quantity;
-		} else {
+		if (!class_exists($className)) {
 			InfoPrinter::printMessage("Не найден класс животного '". $className ."' ", 1);
 			exit();
 		}
+
+		// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
+		$this->barn[ $className ]["object"]   = new $className(++$this->lastUniqueNum);
+		$this->barn[ $className ]["quantity"] = $quantity;
 	}
 
 	public function addProduct($className, $quantity = 0) {
