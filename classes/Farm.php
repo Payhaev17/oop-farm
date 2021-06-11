@@ -8,21 +8,20 @@ class Farm {
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
 		$this->productsStorage = [];
 
+		$lastUniqueNum = 0;
+
 		foreach($animals as $animal) {
 			for($i = 0; $i < $animal["quantity"]; $i++) {
-				array_push(
-					$this->barn, 
-					new $animal["animalType"]( $this->genUniqueNumber() )
-				);
+				$newUniqueNum = $this->genUniqueNumber($lastUniqueNum);
+				$lastUniqueNum = $newUniqueNum;
+
+				$this->addAnimal($animal["animalType"], $newUniqueNum);
 			}
 		}
 	}
 
-	public function genUniqueNumber() {
-		$length = count($this->barn);
-
-		if ($length <= 0) return 0;
-		else return $this->barn[ $length-1 ]->getUniqueNumber() + 1;
+	public function genUniqueNumber($lastUniqueNum) {
+		return ++$lastUniqueNum;
 	}
 
 	public function getBarn() {
@@ -31,6 +30,10 @@ class Farm {
 
 	public function getProductsStorage() {
 		return $this->productsStorage;
+	}
+
+	public function addAnimal($type, $newUniqueNum) {
+		array_push($this->barn, new $type( $newUniqueNum ));
 	}
 
 	public function collectProducts() {
