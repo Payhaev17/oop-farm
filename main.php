@@ -20,7 +20,7 @@ $Farm = new Farm([
   ["className" => "Chicken", "quantity" => 20],
 ]);
 
-// $Farm->addAnimal("Sheep", 15); // Можно и так
+$Farm->addAnimal("Sheep", 15); // Можно и так
 
 // Собираем продукты
 $Farm->collectProducts();
