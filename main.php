@@ -3,6 +3,8 @@
 require "./classes/Animal.php";
 require "./classes/Cow.php";
 require "./classes/Chicken.php";
+
+require "./classes/InfoPrinter.php";
 require "./classes/Farm.php";
 
 // Если требуется новое животное, то добавить в массив новый элемент с названием и количеством животного 
@@ -11,9 +13,6 @@ $Farm = new Farm([
   ["animalType" => "Chicken", "quantity" => 20]
 ]);
 
-// $Farm->collectProducts();
+$Farm->collectProducts();
 
-// $products = $Farm->getProductsStorage();
-// foreach($products as $key => $value) {
-//  	echo $key ." - ". $value ."\n";
-// }
+InfoPrinter::productInfo($Farm->getProductsStorage());

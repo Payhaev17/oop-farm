@@ -34,6 +34,8 @@ class Farm {
 	}
 
 	public function collectProducts() {
+		InfoPrinter::printMessage("Производится сбор продукции...", 1);
+
 		foreach($this->barn as $animal) {
 			$product = $animal->genProduct();
 
