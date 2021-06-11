@@ -65,7 +65,7 @@ class Farm {
 
 			// Если в хранилище уже есть данный продукт
 			if (isset($this->productsStorage[ $newProduct["class"] ])) {
-				// То к количеству продукта из хранилища, прибавим количество полученного продукта
+				// То к количеству продукта, прибавим количество полученного продукта
 				$this->productsStorage[ $newProduct["class"] ]["quantity"] += $newProduct["quantity"];
 			} else {
 				// Если нет, то добавляем предмет в хранилище
