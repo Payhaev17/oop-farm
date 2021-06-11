@@ -5,14 +5,6 @@ class Farm {
 	private $productsStorage;
 
 	public function __construct($animals = []) {
-		/* Структура одного элемента из barn
-
-		  "AnimalName" => [
-				"AnimalObject" => Object, // uniqueNumber, product, min, max
-				"quantity" => 10
-			]
-		*/
-
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
 		$this->productsStorage = []; // Хранилище продуктов
 
