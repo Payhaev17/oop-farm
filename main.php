@@ -1,10 +1,15 @@
 <?php
 
-require "./classes/Animal.php";
-require "./classes/Cow.php";
-require "./classes/Chicken.php";
-
 require "./classes/InfoPrinter.php";
+
+require "./classes/Animal.php";
+require "./classes/Animals/Cow.php";
+require "./classes/Animals/Chicken.php";
+
+require "./classes/Product.php";
+require "./classes/Products/Milk.php";
+require "./classes/Products/Egg.php";
+
 require "./classes/Farm.php";
 
 // Если требуется новое животное, то нужно добавить в массив новый элемент с названием класса и количеством животного
