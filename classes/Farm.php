@@ -52,12 +52,13 @@ class Farm {
 		
 		foreach($this->barn as $animal)
 		{
+			// Это новый продукт от животного, пока что его количество равно 0
 			$newProduct = [
 				"class" => $animal["animal"]->getProductName()
 				"quantity" => 0
 			];
 
-			// Если в массиве будет допустим quantity = 10, тот данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
+			// Если в массиве будет допустим quantity = 10, то данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
 			for($i = 0; $i < $animal["quantity"]; $i++) {
 				$newProduct["quantity"] += $animal["animal"]->genProduct();
 			}
