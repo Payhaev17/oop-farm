@@ -23,14 +23,6 @@ class Farm {
 		}
 	}
 
-	public function getBarn() {
-		return $this->barn;
-	}
-
-	public function getProductsStorage() {
-		return $this->productsStorage;
-	}
-
 	public function addAnimal($animalClass, $quantity = 1) {
 		// Если класс животного существует
 		if (class_exists($animalClass)) {
@@ -74,5 +66,13 @@ class Farm {
 				}
 			}
 		}
+	}
+
+	public function getBarn() {
+		return $this->barn;
+	}
+
+	public function getProductsStorage() {
+		return $this->productsStorage;
 	}
 }
