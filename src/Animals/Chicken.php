@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Animals;
+
 // Курица
 class Chicken extends Animal {
 	public function __construct($uniqueNumber) {
