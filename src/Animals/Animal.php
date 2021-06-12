@@ -12,15 +12,15 @@ abstract class Animal {
 	// Максимальное кол-во продукта
 	protected int $max;
 
-	public function getUniqueNumber() {
+	public function getUniqueNumber() :int {
 		return $this->uniqueNumber;
 	}
 
-	public function genProduct() {
+	public function genProduct() :int {
 		return mt_rand($this->min, $this->max);
 	}
 
-	public function getProductName() {
+	public function getProductName() :string {
 		return $this->productName;
 	}
 
