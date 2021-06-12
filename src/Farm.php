@@ -5,17 +5,18 @@ namespace App;
 class Farm {
 	private array $barn;
 	private array $productsStorage;
+	
 	private int $lastUniqueNumber;
 
 	public function __construct() {
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
 		$this->productsStorage = []; // Хранилище продуктов
 
-		$this->lastUniqueNum = 0; // Последний уникальный номер животного
+		$this->lastUniqueNumber = 0; // Последний уникальный номер животного
 	}
 
 	public function addAnimal(Animals\Animal $instance, int $quantity = 1) {
-		$instance->changeUniqueNumber( ++$this->lastUniqueNum );
+		$instance->changeUniqueNumber( ++$this->lastUniqueNumber );
 		// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
 		$this->barn[ get_class($instance) ]["instance"] = $instance;
 		$this->barn[ get_class($instance) ]["quantity"] = $quantity;
