@@ -41,7 +41,6 @@ class Farm {
 			$productClassName = "App\Products\\". $animal->getProductName();
 			$productQuantity = $animal->genProduct();
 			
-			// Это новый продукт от животного, пока что его количество равно 0
 			for($i = 0; $i < $productQuantity; $i++) {
 				$this->addProduct(new $productClassName());
 			}
