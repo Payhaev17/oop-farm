@@ -48,7 +48,7 @@ class Farm {
 		}
 	}
 
-	public function getBarn() {
+	public function getBarn() :array {
 		return $this->barn;
 	}
 
