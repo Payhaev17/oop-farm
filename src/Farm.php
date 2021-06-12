@@ -15,7 +15,7 @@ class Farm {
 		$this->lastUniqueNumber = 1; // Последний уникальный номер животного
 	}
 
-	public function addAnimal(Animals\Animal $instance, int $quantity) { // В аргументы получаем только наследник от класса Animal
+	public function addAnimal(Animals\Animal $instance, int $quantity) { // В аргументы получаем только наследника от класса Animal
 		// Добавляем отдельно каждое животное
 		for($i = 0; $i < $quantity; $i++) {
 			$newUniqueNumber = ++$this->lastUniqueNumber;
@@ -26,7 +26,7 @@ class Farm {
 		}
 	}
 
-	public function addProduct(Products\Product $instance) { // В аргументы получаем только наследник от класса Product
+	public function addProduct(Products\Product $instance) { // В аргументы получаем только наследника от класса Product
 		array_push($this->productsStorage, $instance);
 	}
 
