@@ -10,7 +10,7 @@ $Farm = new Farm();
 
 $Farm->addAnimal($Shop->buyAnimal("Cow"), 10);
 $Farm->addAnimal($Shop->buyAnimal("Chicken"), 20);
-$Farm->addAnimal($Shop->buyAnimal("Sheep"), 5);
+$Farm->addAnimal($Shop->buyAnimal("Sheep"), 10);
 
 // Собираем продукты
 $Farm->collectProducts();

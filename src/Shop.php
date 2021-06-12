@@ -8,15 +8,21 @@ class Shop {
   public function __construct()
   {
     $this->animals = [
-      "Cow" => new Animals\Cow(),
-      "Chicken" => new Animals\Chicken(),
-      "Sheep" => new Animals\Sheep()
+      "Cow" => function() {
+        return new Animals\Cow();
+      },
+      "Chicken" => function() {
+        return new Animals\Chicken();
+      },
+      "Sheep" => function() {
+        return new Animals\Sheep();
+      }
     ];
   }
 
-  public function buyAnimal(string $animalName = "Cow") {
+  public function buyAnimal(string $animalName = "Cow") :Animals\Animal {
     if (isset($this->animals[ $animalName ])) {
-      return $this->animals[ $animalName ];
+      return $this->animals[ $animalName ]();
     }
   }
 }

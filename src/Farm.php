@@ -15,7 +15,7 @@ class Farm {
 		$this->lastUniqueNumber = 1; // Последний уникальный номер животного
 	}
 
-	public function addAnimal(Animals\Animal $instance, int $quantity = 1) { // В аргументы получаем только наследник от класса Animal
+	public function addAnimal(Animals\Animal $instance, int $quantity) { // В аргументы получаем только наследник от класса Animal
 		// Добавляем отдельно каждое животное
 		for($i = 0; $i < $quantity; $i++) {
 			$newUniqueNumber = ++$this->lastUniqueNumber;

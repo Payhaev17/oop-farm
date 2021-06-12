@@ -12,7 +12,7 @@ class InfoPrinter {
 
   static function productsInfo(array $products) {
     foreach($products as $product) {
-      echo "Продукт: ". $product["instance"]->getName() ." \n\t Собрано - ". $product["quantity"] ." ". $product["instance"]->getUnit() ."\n";
+      echo "Продукт: {$product["instance"]->getName()} \n\t Собрано - {$product["quantity"]} {$product["instance"]->getUnit()}\n";
     }
   }
 }
