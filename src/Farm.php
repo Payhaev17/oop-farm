@@ -3,8 +3,9 @@
 namespace App;
 
 class Farm {
-	private $barn;
-	private $productsStorage;
+	private array $barn;
+	private array $productsStorage;
+	private int $lastUniqueNumber;
 
 	public function __construct() {
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
@@ -14,6 +15,7 @@ class Farm {
 	}
 
 	public function addAnimal(Animals\Animal $instance, int $quantity = 1) {
+		$instance->changeUniqueNumber( ++$this->lastUniqueNum );
 		// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
 		$this->barn[ get_class($instance) ]["instance"] = $instance;
 		$this->barn[ get_class($instance) ]["quantity"] = $quantity;
@@ -39,6 +41,7 @@ class Farm {
 		foreach($this->barn as $animal)
 		{
 			$productClassName = "App\Products\\". $animal["instance"]->getProductName();
+			
 			// Это новый продукт от животного, пока что его количество равно 0
 			$newProduct = [
 				"instance" => new $productClassName(),

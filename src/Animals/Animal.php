@@ -4,13 +4,13 @@ namespace App\Animals;
 
 abstract class Animal {
 	// Уникальный номер каждого животного
-	protected $uniqueNumber;
+	protected int $uniqueNumber;
 	// Название генерируемого продукта
-	protected $productName;
+	protected string $productName;
 	// Минимальное кол-во продукта
-	protected $min;
+	protected int $min;
 	// Максимальное кол-во продукта
-	protected $max;
+	protected int $max;
 
 	public function getUniqueNumber() {
 		return $this->uniqueNumber;
@@ -22,5 +22,9 @@ abstract class Animal {
 
 	public function getProductName() {
 		return $this->productName;
+	}
+
+	public function changeUniqueNumber(int $num) {
+		$this->uniqueNumber = $num;
 	}
 };
