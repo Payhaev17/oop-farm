@@ -8,12 +8,12 @@ require_once __DIR__ ."/vendor/autoload.php";
 $Shop = new Shop();
 $Farm = new Farm();
 
-$Farm->addAnimal($Shop->buyAnimal("Cow"), 20);
-$Farm->addAnimal($Shop->buyAnimal("Chicken"), 10);
-$Farm->addAnimal($Shop->buyAnimal("Sheep"), 15);
+$Farm->addAnimal($Shop->buyAnimal("Cow"), 10);
+$Farm->addAnimal($Shop->buyAnimal("Chicken"), 20);
+$Farm->addAnimal($Shop->buyAnimal("Sheep"), 5);
 
 // Собираем продукты
 $Farm->collectProducts();
 
 // Выводим полученные продукты
-InfoPrinter::productsInfo($Farm->getProductsStorage());
+InfoPrinter::productsInfo( $Farm->getProductsInfo() );

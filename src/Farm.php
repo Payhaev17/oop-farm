@@ -12,28 +12,22 @@ class Farm {
 		$this->barn = []; // Данный массив будет выступать в качестве хлева
 		$this->productsStorage = []; // Хранилище продуктов
 
-		$this->lastUniqueNumber = 0; // Последний уникальный номер животного
+		$this->lastUniqueNumber = 1; // Последний уникальный номер животного
 	}
 
-	public function addAnimal(Animals\Animal $instance, int $quantity = 1) {
-		$instance->changeUniqueNumber( ++$this->lastUniqueNumber );
-		// Добавляем его в массив (хлев), где ключем будет имя класса животного, а кол-во будет в соседней ячейке на одном уровне
-		$this->barn[ get_class($instance) ]["instance"] = $instance;
-		$this->barn[ get_class($instance) ]["quantity"] = $quantity;
-	}
+	public function addAnimal(Animals\Animal $instance, int $quantity = 1) { // В аргументы получаем только наследник от класса Animal
+		// Добавляем отдельно каждое животное
+		for($i = 0; $i < $quantity; $i++) {
+			$newUniqueNumber = ++$this->lastUniqueNumber;
+			$this->lastUniqueNumber = $newUniqueNumber;
 
-	public function addProduct(Products\Product $instance, int $quantity = 0) {
-		$product = get_class($instance); // Имя класса
-
-		// Если в хранилище уже есть данный продукт
-		if (isset($this->productsStorage[ $product ])) {
-			// То к количеству продукта, прибавим количество полученного продукта
-			$this->productsStorage[ $product ]["quantity"] += $quantity;
-		} else {
-			// Если нет, то добавляем предмет в хранилище
-			$this->productsStorage[ $product ]["instance"] = $instance;
-			$this->productsStorage[ $product ]["quantity"] = $quantity;
+			$instance->changeUniqueNumber( $newUniqueNumber );
+			array_push($this->barn, $instance);
 		}
+	}
+
+	public function addProduct(Products\Product $instance) { // В аргументы получаем только наследник от класса Product
+		array_push($this->productsStorage, $instance);
 	}
 
 	public function collectProducts() {
@@ -43,22 +37,14 @@ class Farm {
 
 		InfoPrinter::printMessage("Производится сбор продукции...", 1);
 		
-		foreach($this->barn as $animal)
-		{
-			$productClassName = "App\Products\\". $animal["instance"]->getProductName();
+		foreach($this->barn as $animal) {
+			$productClassName = "App\Products\\". $animal->getProductName();
+			$productQuantity = $animal->genProduct();
 			
 			// Это новый продукт от животного, пока что его количество равно 0
-			$newProduct = [
-				"instance" => new $productClassName(),
-				"quantity" => 0
-			];
-
-			// Если в массиве будет допустим quantity = 10, то данный цикл будет генерировать продукт 10 раз, т.е. для каждого животного
-			for($i = 0; $i < $animal["quantity"]; $i++) {
-				$newProduct["quantity"] += $animal["instance"]->genProduct();
+			for($i = 0; $i < $productQuantity; $i++) {
+				$this->addProduct(new $productClassName());
 			}
-			
-			$this->addProduct($newProduct["instance"], $newProduct["quantity"]);
 		}
 	}
 
@@ -66,7 +52,20 @@ class Farm {
 		return $this->barn;
 	}
 
-	public function getProductsStorage() {
-		return $this->productsStorage;
+	public function getProductsInfo() :array {
+		$info = [];
+
+		foreach($this->productsStorage as $product) {
+			$productName = get_class($product);
+
+			if (isset($info[ $productName ])) {
+				$info[ $productName ]["quantity"] += 1;
+			} else {
+				$info[ $productName ]["instance"] = $product;
+				$info[ $productName ]["quantity"] = 1;
+			}
+		}
+
+		return $info;
 	}
 }
