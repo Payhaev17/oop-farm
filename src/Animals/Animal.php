@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Animals;
 
 abstract class Animal {
 	// Уникальный номер каждого животного

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Products;
 
 abstract class Product {
   private $name;
