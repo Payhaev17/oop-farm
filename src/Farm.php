@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Farm {
 	private $barn;
 	private $productsStorage;

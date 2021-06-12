@@ -1,0 +1,16 @@
+{
+    "name": "a/a",
+    "authors": [
+        {
+            "name": "Payhaev17",
+            "email": "ran777dom@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class InfoPrinter {
   static function printMessage($text, $sleepSeconds) {
     echo $text ."\n";
