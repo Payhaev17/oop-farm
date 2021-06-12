@@ -37,6 +37,10 @@ class Farm {
 	}
 
 	public function collectProducts() {
+		if (count($this->barn) <= 0) {
+			exit(InfoPrinter::printMessage("Хлев пуст", 1));
+		}
+
 		InfoPrinter::printMessage("Производится сбор продукции...", 1);
 		
 		foreach($this->barn as $animal)
