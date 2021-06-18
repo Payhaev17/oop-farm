@@ -19,7 +19,6 @@ class Farm {
 		// Добавляем отдельно каждое животное
 		for($i = 0; $i < $quantity; $i++) {
 			$newUniqueNumber = ++$this->lastUniqueNumber;
-			$this->lastUniqueNumber = $newUniqueNumber;
 
 			$instance->changeUniqueNumber( $newUniqueNumber );
 			array_push($this->barn, $instance);
