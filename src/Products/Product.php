@@ -3,8 +3,8 @@
 namespace App\Products;
 
 abstract class Product {
-  protected $name;
-  protected $unit;
+  protected string $name;
+  protected string $unit;
 
   public function getName() :string {
     return $this->name;
