@@ -57,7 +57,7 @@ class Farm {
 			$productName = get_class($product);
 
 			if (isset($info[ $productName ])) {
-				$info[ $productName ]["quantity"] += 1;
+				$info[ $productName ]["quantity"]++;
 			} else {
 				$info[ $productName ]["instance"] = $product;
 				$info[ $productName ]["quantity"] = 1;
