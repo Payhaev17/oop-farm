@@ -9,7 +9,7 @@ class Farm {
 	private int $lastUniqueNumber;
 
 	public function __construct() {
-		$this->barn = []; // Данный массив будет выступать в качестве хлева
+		$this->barn = []; // Хлев
 		$this->productsStorage = []; // Хранилище продуктов
 
 		$this->lastUniqueNumber = 1; // Последний уникальный номер животного
