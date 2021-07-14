@@ -12,7 +12,7 @@ class Farm {
 		$this->barn = []; // Хлев
 		$this->productsStorage = []; // Хранилище продуктов
 
-		$this->lastUniqueNumber = 1; // Последний уникальный номер животного
+		$this->lastUniqueNumber = 1; // Последний id животного
 	}
 
 	public function addAnimal(Animals\Animal $instance, int $quantity) { // В аргументы получаем только наследника от класса Animal
